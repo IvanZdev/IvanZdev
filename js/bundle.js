@@ -3236,19 +3236,7 @@ const scroll = new LocomotiveScroll({
 		}
 });
 
-scroll.on('scroll', (args) => {
 
-  console.log("test");
-if(document.getElementsByTagName("html")[0].classList.contains('has-scroll-scrolling')){
-   document.querySelector(".video iframe").style.pointerEvents = "none";
-}
-else{
-  document.querySelector(".video iframe").style.pointerEvents = "visible";
-}
-
-
-
-});
 
 setTimeout(() => {
     scroll.update();
