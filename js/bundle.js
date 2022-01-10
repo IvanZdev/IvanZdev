@@ -3140,9 +3140,62 @@
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],2:[function(require,module,exports){
+if(document.body.classList.contains('main-page')){
 
-var LocomotiveScroll = require('locomotive-scroll');
 
+
+}
+
+
+
+else if(document.body.classList.contains('ark-page')){
+
+
+  var servers = document.querySelector(".servers") ;
+  document.querySelector(".scroll-servers").addEventListener("click" , function (e) {
+    e.preventDefault();
+    scroll.scrollTo(".servers");
+  
+  })
+  
+  const swiper = new Swiper('.swiper-container', {
+      // Optional parameters
+      direction: 'horizontal',
+      loop: false,
+      slidesPerView: 3,
+      spaceBetween: 280,
+  
+  
+      breakpoints: {
+       30: {
+          slidesPerView: 1,
+          spaceBetween: 300,
+        },
+  
+        700: {
+          slidesPerView: 2,
+          spaceBetween: 120,
+        },
+        // when window width is >= 480px
+        1100: {
+          slidesPerView: 2,
+          spaceBetween: 280,
+        },
+        // when window width is >= 640px
+        1380: {
+          slidesPerView: 3,
+          spaceBetween: 280,
+        }
+      },
+    
+      // And if we need scrollbar
+      scrollbar: {
+        el: '.swiper-scrollbar',
+      },
+    });
+  
+
+    var LocomotiveScroll = require('locomotive-scroll');
 const scroll = new LocomotiveScroll({
     el: document.querySelector('#page-scroll'),
     smooth: true,
@@ -3158,48 +3211,57 @@ setTimeout(() => {
     scroll.update();
 }, 300);
 
-var servers = document.querySelector(".servers") ;
-document.querySelector(".scroll-servers").addEventListener("click" , function (e) {
-  e.preventDefault();
-  scroll.scrollTo(".servers");
+window.addEventListener("resize", function () {
+  setTimeout(() => {
+    scroll.update();
+}, 300);
+});
 
-})
+}
 
-const swiper = new Swiper('.swiper-container', {
-    // Optional parameters
-    direction: 'horizontal',
-    loop: false,
-    slidesPerView: 3,
-    spaceBetween: 280,
+else if(document.body.classList.contains('gta-page')){
 
 
-    breakpoints: {
-     30: {
-        slidesPerView: 1,
-        spaceBetween: 300,
-      },
 
-      700: {
-        slidesPerView: 2,
-        spaceBetween: 120,
-      },
-      // when window width is >= 480px
-      1100: {
-        slidesPerView: 2,
-        spaceBetween: 280,
-      },
-      // when window width is >= 640px
-      1380: {
-        slidesPerView: 3,
-        spaceBetween: 280,
-      }
-    },
-  
-    // And if we need scrollbar
-    scrollbar: {
-      el: '.swiper-scrollbar',
-    },
-  });
+
+    var LocomotiveScroll = require('locomotive-scroll');
+const scroll = new LocomotiveScroll({
+    el: document.querySelector('#page-scroll'),
+    smooth: true,
+    smartphone: {
+			smooth: true
+		},
+		tablet: {
+			smooth: true
+		}
+});
+
+scroll.on('scroll', (args) => {
+
+  console.log("test");
+if(document.getElementsByTagName("html")[0].classList.contains('has-scroll-scrolling')){
+   document.querySelector(".video iframe").style.pointerEvents = "none";
+}
+else{
+  document.querySelector(".video iframe").style.pointerEvents = "visible";
+}
+
+
+
+});
+
+setTimeout(() => {
+    scroll.update();
+}, 300);
+
+window.addEventListener("resize", function () {
+  setTimeout(() => {
+    scroll.update();
+}, 300);
+});
+
+};
+
 
 
 },{"locomotive-scroll":1}],3:[function(require,module,exports){
